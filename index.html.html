@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude schneidet dein Video — Anleitung | Lass die KI machen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1115;--paper:#f4f4f2;--muted:#9aa3ad;--mint:#3DDC97;--card:#181b21;--line:#262b33;--code:#0b0d11}
+:root:not([data-theme="light"]) { }
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f7f7f5;--paper:#14171c;--muted:#5c6570;--mint:#1fa86e;--card:#ffffff;--line:#e3e5e8;--code:#14171c}}
+:root[data-theme="dark"]{--bg:#0f1115;--paper:#f4f4f2;--muted:#9aa3ad;--mint:#3DDC97;--card:#181b21;--line:#262b33;--code:#0b0d11}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--paper);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+main{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.1;font-weight:800;margin:0 0 8px}
+h1 span{color:var(--mint)}
+.sub{color:var(--muted);margin:0 0 32px;font-size:17px}
+h2{font-size:20px;margin:40px 0 12px;font-weight:800}
+h2 small{display:block;color:var(--mint);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+p{margin:0 0 14px}
+ul,ol{padding-left:22px;margin:0 0 14px}
+li{margin:4px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:14px 0}
+.steps li{margin:8px 0}
+pre{background:var(--code);color:#e6e6e6;border:1px solid var(--line);border-radius:12px;padding:16px;overflow-x:auto;font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.5;margin:0}
+.codewrap{position:relative;margin:12px 0 18px}
+.copy{position:absolute;top:10px;right:10px;background:var(--mint);color:#0f1115;border:0;border-radius:8px;padding:6px 12px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit}
+.copy:active{transform:translateY(1px)}
+code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.92em;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.note{border-left:3px solid var(--mint);padding:10px 14px;color:var(--muted);background:var(--card);border-radius:0 12px 12px 0;margin:14px 0}
+.tag{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--muted);margin:0 6px 6px 0}
+footer{margin-top:56px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px}
+a{color:var(--mint)}
+</style>
+</head>
+<body>
+<main>
+<h1>Claude schneidet <span>dein Video.</span></h1>
+<p class="sub">Die Anleitung aus dem Video: In 20 Minuten baust du dir mit Claude Code eine Pipeline, die aus einem Textskript ein fertiges Hochkant-Video macht — Stimme, Untertitel, Karten, Lautstärke. Ohne CapCut.</p>
+
+<span class="tag">Windows / Mac</span><span class="tag">Einrichtung 20–40 Minuten</span><span class="tag">danach ~4 Minuten pro Video</span><span class="tag">keine Programmierkenntnisse, aber ein Terminal</span>
+
+<h2><small>Vorab</small>Was du am Ende hast — und was es kostet</h2>
+<div class="card">
+<p><strong>Ergebnis:</strong> Ein Ordner auf deinem Rechner. Du schreibst einen Text in <code>script.txt</code>, tippst einen Befehl, und nach ein paar Minuten liegt ein fertiges Hochkant-Video (1080×1920) da — mit deutscher Stimme, Untertiteln, die Wort für Wort mitlaufen, und drei Kartentypen (Hook, Liste, Abspann). Das ist die Basis; alles Weitere baust du mit einem Satz an Claude dazu.</p>
+<p><strong>Kosten:</strong> Claude Code braucht ein Claude-Abo (Pro oder Max). Alles andere — Node, Remotion, die Stimme über Edge-TTS, ffmpeg — ist kostenlos. Für Videos, die du veröffentlichst, prüfe bitte die Remotion-Lizenz: für Einzelpersonen und kleine Teams frei, größere Firmen brauchen eine Lizenz.</p>
+<p><strong>Ehrlich:</strong> Beim ersten Durchlauf hakt fast immer irgendwo etwas (Pfad, Python, Schrift). Das ist normal. Kopiere die Fehlermeldung in Claude Code und sag „fix das" — das ist der eigentliche Trick an der Sache.</p>
+</div>
+
+<h2><small>Schritt 0</small>Was du brauchst</h2>
+<div class="card">
+<ol class="steps">
+<li><strong>Node.js</strong> (Version 18 oder neuer) — <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a>, einfach installieren.</li>
+<li><strong>Python 3</strong> (für die Stimme) — <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a>. Bei der Installation „Add to PATH" anhaken.</li>
+<li><strong>ffmpeg</strong> — unter Windows: <code>winget install ffmpeg</code>, unter Mac: <code>brew install ffmpeg</code>.</li>
+<li><strong>Claude Code</strong> — <code>npm install -g @anthropic-ai/claude-code</code>, dann <code>claude</code> im Terminal starten und anmelden.</li>
+</ol>
+</div>
+
+<h2><small>Schritt 1</small>Ordner anlegen und Claude Code starten</h2>
+<div class="codewrap"><button class="copy" data-copy="c1">Kopieren</button>
+<pre id="c1">mkdir mein-renderer
+cd mein-renderer
+claude</pre></div>
+
+<h2><small>Schritt 2</small>Diesen Prompt in Claude Code einfügen</h2>
+<p>Komplett kopieren, einfügen, Enter. Claude Code baut dir das Projekt und meldet sich, wenn es fertig ist.</p>
+<div class="codewrap"><button class="copy" data-copy="c2">Prompt kopieren</button>
+<pre id="c2">Baue mir in diesem leeren Ordner eine Video-Pipeline für Hochkant-Kurzvideos
+(1080x1920, 30 fps), die aus einer JSON-Datei ein fertiges MP4 rendert.
+Nutze Remotion (React) für das Bild und edge-tts (Python) für die Stimme.
+Erzeuge alle Dateien selbst und installiere die Abhängigkeiten.
+
+1. STRUKTUR
+   - package.json mit Remotion, scripts: "render" und "preview"
+   - src/Root.tsx registriert eine Composition "Main", die ihre Dauer aus
+     der Timeline-JSON liest
+   - src/scenes/ mit drei Kartentypen:
+     HookCard   { lines: string[], accentLine?: number }   – große Textzeilen,
+                  eine davon in Akzentfarbe, Zeilen blenden nacheinander ein
+     ListCard   { title: string, items: string[], footer?: string } –
+                  Listenpunkte erscheinen nacheinander
+     EndCard    { line1: string, line2?: string, brand: string }
+   - src/theme.ts: Hintergrund #0F1115, Text #F4F4F2, Akzent #3DDC97,
+     Schrift Inter (fett), sichere Ränder 120 px oben/unten
+   - tools/tts.py: nimmt eine Textdatei, erzeugt public/audio/vo.mp3 mit
+     edge-tts (Stimme de-DE-FlorianMultilingualNeural, rate +5%) UND
+     public/captions/vo.srt aus den WordBoundary-Events (Cues aus 3–4
+     Wörtern, keine Cues länger als 2,5 s)
+   - src/Captions.tsx: zeigt die SRT als Untertitel unten (weiß, fett,
+     schwarze Kontur), synchron zur Audiospur
+   - scripts/render.js: rendert "Main" nach out/video.mp4 und normalisiert
+     danach mit ffmpeg loudnorm auf -16 LUFS, -1 dBTP
+
+2. TIMELINE-FORMAT (timeline.json im Root)
+   {
+     "fps": 30,
+     "audio": "public/audio/vo.mp3",
+     "captions": "public/captions/vo.srt",
+     "scenes": [
+       { "type": "HookCard", "start": 0,   "end": 3.5, "props": { ... } },
+       { "type": "ListCard", "start": 3.5, "end": 8,   "props": { ... } },
+       { "type": "EndCard",  "start": 8,   "end": 12,  "props": { ... } }
+     ]
+   }
+   Die Composition-Dauer ist das größte "end" aller Szenen.
+
+3. BEISPIEL
+   Lege script.txt an mit diesem Text:
+   "Für mein letztes Video hab ich drei Stunden geschnitten. Jetzt schreibe
+   ich nur noch den Text. Stimme, Untertitel und Karten macht Claude.
+   Vier Minuten statt drei Stunden."
+   Lege timeline.json mit drei passenden Szenen dazu an (HookCard mit der
+   Zahl "3 STUNDEN" als Akzentzeile, ListCard mit "Stimme", "Untertitel",
+   "Karten", "Lautstärke", EndCard mit "Lass die KI machen").
+
+4. ABLAUF
+   Ein Befehl "npm run video" führt aus: tools/tts.py script.txt →
+   scripts/render.js. Am Ende liegt out/video.mp4.
+
+5. QUALITÄT
+   - Schrift muss geladen sein, bevor gerendert wird (kein Frame ohne Text)
+   - Text darf nie über den Rand laufen: lange Zeilen automatisch umbrechen
+   - Ein kleiner Test, der prüft, dass die Timeline valide ist und die
+     Dauer korrekt berechnet wird
+
+Führe am Ende "npm run video" aus und sag mir den Pfad des fertigen
+Videos, die Dauer und ob Untertitel und Ton synchron sind.</pre></div>
+
+<h2><small>Schritt 3</small>Dein erstes eigenes Video</h2>
+<div class="card">
+<ol class="steps">
+<li>Öffne <code>script.txt</code>, schreib deinen Text rein (das wird gesprochen).</li>
+<li>Öffne <code>timeline.json</code>, passe die Karten an — was auf welcher Karte steht, wann sie kommt.</li>
+<li>Im Terminal: <code>npm run video</code>. Fertig ist <code>out/video.mp4</code>.</li>
+<li>Willst du etwas ändern? Sag es Claude Code in normalem Deutsch: „Mach die Akzentzeile größer", „Füge eine Karte mit drei Zahlen hinzu", „Die Stimme soll etwas schneller sprechen."</li>
+</ol>
+</div>
+
+<div class="note">Das ist die Basisversion von dem, womit ich meine eigenen Videos baue. Meine hat inzwischen Zoom und Blur für Screen-Recordings, eine Figur, Sound-Hits und eine ElevenLabs-Stimme — alles Schritt für Schritt mit Claude Code dazugebaut, genau so wie in Schritt 3 Punkt 4. Fang mit der Basis an; alles Weitere ist ein Satz an Claude.</div>
+
+<h2><small>Häufige Fragen</small>Wenn etwas hakt</h2>
+<div class="card">
+<p><strong>„claude: command not found"</strong> — Terminal einmal schließen und neu öffnen, damit der PATH neu geladen wird.</p>
+<p><strong>Kein Ton in der Datei</strong> — <code>python tools/tts.py script.txt</code> einzeln ausführen; wenn Python meckert: <code>pip install edge-tts</code>.</p>
+<p><strong>Untertitel hängen hinterher</strong> — das ist fast immer die Render-Rate. Sag Claude Code: „Prüfe, ob die SRT-Zeiten in Frames umgerechnet werden, nicht in Sekunden."</p>
+<p><strong>Mac, kein winget</strong> — ffmpeg über Homebrew: <code>brew install ffmpeg</code>.</p>
+</div>
+
+<footer>
+Lass die KI machen — Experimente mit KI, die dir Arbeit abnehmen. Wenn du damit dein erstes Video gebaut hast: schick es mir, ich schau drüber.
+</footer>
+</main>
+<script>
+document.querySelectorAll('.copy').forEach(b=>{b.addEventListener('click',()=>{const t=document.getElementById(b.dataset.copy).innerText;navigator.clipboard.writeText(t).then(()=>{const o=b.textContent;b.textContent='Kopiert ✓';setTimeout(()=>b.textContent=o,1600)}).catch(()=>{})})});
+</script>
+</body>
+</html>
