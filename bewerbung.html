@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7 Sekunden — Bewerbung | Lass die KI machen</title>
+<meta name="description" content="Vorlage und die drei Prompts aus dem Video. Kostenlos, ohne Anmeldung, kein Abo.">
+<style>
+:root{--bg:#0f1115;--paper:#f4f4f2;--muted:#9aa3ad;--mint:#3DDC97;--on-mint:#0f1115;--card:#181b21;--line:#262b33;--code:#0b0d11;--code-text:#e6e6e6}
+@media (prefers-color-scheme: light){:root{--bg:#f7f7f5;--paper:#14171c;--muted:#5c6570;--mint:#1fa86e;--on-mint:#ffffff;--card:#ffffff;--line:#e3e5e8;--code:#14171c;--code-text:#e6e6e6}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--paper);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55}
+main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:clamp(28px,7vw,40px);line-height:1.1;font-weight:800;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 28px;font-size:17px}
+h2{font-size:20px;margin:40px 0 12px;font-weight:800}
+p{margin:0 0 14px}
+.previews{display:grid;grid-template-columns:1fr;gap:20px}
+@media (min-width:640px){.previews{grid-template-columns:1fr 1fr}}
+figure{margin:0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+.btn{display:block;margin-top:10px;text-align:center;background:var(--mint);color:var(--on-mint);font-weight:700;text-decoration:none;border-radius:10px;padding:12px 16px}
+.btn:hover{filter:brightness(1.08)}
+.note{border-left:3px solid var(--mint);padding:10px 14px;color:var(--muted);background:var(--card);border-radius:0 12px 12px 0;margin:18px 0}
+.step{color:var(--muted);margin:22px 0 8px}
+.step b{color:var(--paper)}
+.codewrap{position:relative;margin:0 0 6px}
+pre{background:var(--code);color:var(--code-text);border:1px solid var(--line);border-radius:12px;padding:44px 14px 14px;margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.5}
+.copy{position:absolute;top:8px;right:8px;background:var(--mint);color:var(--on-mint);border:0;border-radius:8px;padding:6px 12px;font-weight:700;font-size:12px;cursor:pointer;font-family:inherit}
+.copy:active{transform:translateY(1px)}
+ul.rules{padding-left:22px;margin:0}
+ul.rules li{margin:8px 0}
+footer{margin-top:48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px}
+a{color:var(--mint)}
+</style>
+</head>
+<body>
+<main>
+<h1>7 Sekunden — die Bewerbung, die drei Personaler einlädt</h1>
+<p class="sub">Vorlage und die drei Prompts aus dem Video. Kostenlos, ohne Anmeldung, kein Abo.</p>
+
+<div class="previews">
+<figure>
+<img src="bewerbung/final_anschreiben.png" alt="Vorschau: Anschreiben der Vorlage" width="1654" height="2339">
+<a class="btn" href="bewerbung/Anschreiben_Laura_Brenner_final.pdf" download>Anschreiben als PDF</a>
+</figure>
+<figure>
+<img src="bewerbung/final_lebenslauf.png" alt="Vorschau: Lebenslauf der Vorlage" width="1654" height="2339">
+<a class="btn" href="bewerbung/Lebenslauf_Laura_Brenner_final.pdf" download>Lebenslauf als PDF</a>
+</figure>
+</div>
+<div class="note">Die Vorlage zeigt eine erfundene Person. Alles, was du übernimmst, muss bei dir stimmen — die KI erfindet nichts, und du auch nicht.</div>
+
+<h2>So machst du es mit deiner Bewerbung — drei Prompts</h2>
+
+<p class="step"><b>Schritt 1:</b> Öffne ChatGPT oder Claude. Häng deinen Lebenslauf und dein Anschreiben als PDF an. Kopier die Stellenanzeige als Text unten in den Prompt.</p>
+<div class="codewrap"><button class="copy" type="button" data-copy="p1">Kopieren</button>
+<pre id="p1">Du bist Personaler. Du hast 7 Sekunden für diese Bewerbung (Lebenslauf und Anschreiben im Anhang), dann entscheidest du. Spiel das dreimal, als drei verschiedene Personen:
+1. Personalleiterin in einem Familienbetrieb mit 80 Mitarbeitern
+2. HR-Business-Partner in einem Konzern mit Bewerbermanagement-System
+3. Gründer eines jungen Unternehmens, der selbst einstellt
+
+Für jede Person, genau in diesem Format:
+- Was ich in 7 Sekunden sehe: (ein Satz)
+- Entscheidung: EINLADUNG oder ABSAGE
+- Der Grund, den ich dir nie schreiben würde: (ein Satz, ehrlich)
+- Was du ändern müsstest, damit ich Ja sage: (ein konkreter Punkt)
+
+Danach eine Zeile: Wie viele von drei laden ein?
+
+STELLENANZEIGE:
+(hier den Anzeigentext einfügen)</pre></div>
+
+<p class="step"><b>Schritt 2:</b> Jetzt lässt du die KI neu schreiben. Trag Firma, Stelle, Ort und – wenn du eine Lücke hast – den echten Grund ein.</p>
+<div class="codewrap"><button class="copy" type="button" data-copy="p2">Kopieren</button>
+<pre id="p2">Jetzt die komplette Bewerbung neu, fertig zum Abschicken – Anschreiben und Lebenslauf. Regeln:
+- Firma, Stellentitel und Ort exakt aus der Anzeige: (Firma), (Straße), (PLZ Ort), (Stellentitel).
+- Die Wörter der Anzeige für meine Tätigkeiten verwenden.
+- Falls es eine Lücke im Lebenslauf gibt: der Grund ist (dein echter Grund). Das kommt als eine ehrliche Zeile in den Lebenslauf und als ein Halbsatz ins Anschreiben, nicht mehr.
+- Eintritt ab (Datum).
+- Nichts erfinden, was nicht im alten Lebenslauf steht. Zahlen aus dem alten Anschreiben behalten.
+- Anschreiben maximal eine Seite, kurze Sätze, kein „hiermit bewerbe ich mich“, kein „teamfähig und belastbar“.
+Gib zuerst das Anschreiben komplett aus, dann den Lebenslauf komplett (alle Abschnitte).</pre></div>
+
+<p class="step"><b>Schritt 3:</b> Gegenprobe.</p>
+<div class="codewrap"><button class="copy" type="button" data-copy="p3">Kopieren</button>
+<pre id="p3">Jetzt bewerten alle drei Personaler die neue Bewerbung nochmal in 7 Sekunden, gleiches Format wie in der ersten Runde. Am Ende eine Zeile: Wie viele von drei laden jetzt ein?</pre></div>
+<div class="note">Die KI würfelt ein bisschen. Wenn das Ergebnis wackelt, lass Prompt 3 zweimal laufen und nimm, was beide Male genannt wird. Die Gründe sind stabil, die Zahl nicht.</div>
+
+<h2>Woran der Personaler in 7 Sekunden hängen bleibt</h2>
+<ul class="rules">
+<li>Firma und Stellentitel exakt wie in der Anzeige (sonst Serienbrief).</li>
+<li>Jede Lücke über drei Monate mit einer ehrlichen Zeile.</li>
+<li>Keine Floskeln — jede Eigenschaft mit einer Zahl oder einem Beispiel.</li>
+</ul>
+
+<footer>
+<p><a href="index.html">Zur Startseite</a></p>
+<p>TikTok / Instagram / YouTube: @lassdiekimachen</p>
+</footer>
+</main>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=document.getElementById(b.dataset.copy).textContent;
+    function done(){var o=b.textContent;b.textContent='Kopiert ✓';setTimeout(function(){b.textContent=o},1600)}
+    function fallback(){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(a)}
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,fallback)}else{fallback()}
+  });
+});
+</script>
+</body>
+</html>
