@@ -30,6 +30,11 @@ pre{background:var(--code);color:var(--code-text);border:1px solid var(--line);b
 .copy:active{transform:translateY(1px)}
 ul.rules{padding-left:22px;margin:0}
 ul.rules li{margin:8px 0}
+details.ex{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:0 14px;margin:18px 0 14px}
+details.ex summary{cursor:pointer;font-weight:700;padding:12px 0}
+details.ex[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+details.ex .q{margin:0 0 16px}
+details.ex .q p{margin:0 0 6px}
 footer{margin-top:48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px}
 a{color:var(--mint)}
 </style>
@@ -86,6 +91,45 @@ Gib zuerst das Anschreiben komplett aus, dann den Lebenslauf komplett (alle Absc
 <div class="codewrap"><button class="copy" type="button" data-copy="p3">Kopieren</button>
 <pre id="p3">Jetzt bewerten alle drei Personaler die neue Bewerbung nochmal in 7 Sekunden, gleiches Format wie in der ersten Runde. Am Ende eine Zeile: Wie viele von drei laden jetzt ein?</pre></div>
 <div class="note">Die KI würfelt ein bisschen. Wenn das Ergebnis wackelt, lass Prompt 3 zweimal laufen und nimm, was beide Male genannt wird. Die Gründe sind stabil, die Zahl nicht.</div>
+
+<h2>Teil 3: Das Gespräch — die fünf Fragen, die wirklich gestellt werden</h2>
+<p>Die KI spielt die Personalleiterin eines Familienbetriebs und stellt die fünf Fragen, die sie wirklich stellt — inklusive der einen, die sie nicht stellen darf. Zu jeder Frage: was sie wirklich wissen will, welche Antwort überzeugt und welche abschreckt.</p>
+
+<p class="step">Häng deine Bewerbung und die Stellenanzeige an und lass die KI dein Gespräch vorbereiten:</p>
+<div class="codewrap"><button class="copy" type="button" data-copy="p4">Kopieren</button>
+<pre id="p4">Du bist die Personalleiterin eines Familienbetriebs mit 80 Mitarbeitern und führst das Vorstellungsgespräch mit mir für die angehängte Stellenanzeige. Du hast meine Bewerbung vor dir.
+Stell die fünf Fragen, die du wirklich stellst – darunter die verdeckte Frage, mit der du das herausfindest, wonach du nicht direkt fragen darfst (Familie, Kinder, Gesundheit, Alter).
+Für jede Frage genau dieses Format:
+- Frage: (wörtlich, wie du sie stellst)
+- Was ich wirklich wissen will: (ein Satz)
+- Antwort, die mich überzeugt: (maximal drei Sätze, nur aus meinen echten Unterlagen, nichts erfinden)
+- Antwort, die mich abschreckt: (ein Satz)
+Am Ende eine Zeile: Stellst du mich ein – ja oder nein, und warum.</pre></div>
+
+<details class="ex">
+<summary>Die fünf Fragen aus dem Video (Beispiel Laura Brenner)</summary>
+<div class="q"><p><b>Frage 1: „Nehmen Sie mich mal mit an Ihren Empfang: Wie sah ein ganz normaler Dienstagvormittag bei Ihnen aus?“</b></p>
+<p><b>Was sie wirklich wissen will:</b> Ob die Zahlen im Anschreiben gelebter Alltag sind oder nur gut formuliert.</p>
+<p><b>Überzeugt:</b> konkreter Tagesablauf mit den Zahlen aus der Bewerbung.</p>
+<p><b>Schreckt ab:</b> „Das war ganz unterschiedlich, ich habe alles gemacht, was so anfiel.“</p></div>
+<div class="q"><p><b>Frage 2: „Sie schreiben, Post, Fristen und Material übernehmen Sie gern. Was davon haben Sie schon selbst verantwortet?“</b></p>
+<p><b>Was sie wirklich wissen will:</b> Ob du ehrlich sagst, was du noch nicht kannst — sie merkt es nach drei Tagen sowieso.</p>
+<p><b>Überzeugt:</b> „Als eigene Aufgabe hatte ich das noch nicht — was ich mitbringe, ist …“ plus ein Beleg, dass du schnell lernst.</p>
+<p><b>Schreckt ab:</b> „Das habe ich alles schon gemacht.“</p></div>
+<div class="q"><p><b>Frage 3 (die verdeckte): „Unsere Zeiten sind fest, 8:30 bis 17:30, immer vor Ort. Wie sieht Ihr Arbeitstag aus — von der Haustür bis abends zurück?“</b></p>
+<p><b>Was sie wirklich wissen will:</b> Ob du mit Kind um 17:30 noch da bist. Fragen darf sie das nicht — sie hört nur, wie konkret dein Plan klingt.</p>
+<p><b>Überzeugt:</b> „Die Zeiten kenne ich aus der Anzeige. S-Bahn nach Winnenden, ab 1. Oktober, 40 Stunden.“ Wenn es stimmt: ein Satz zur Betreuung nimmt ihr die Sorge, nach der sie nicht fragen darf.</p>
+<p><b>Schreckt ab:</b> „Das kriege ich schon irgendwie hin, man kann ja flexibel sein.“</p></div>
+<div class="q"><p><b>Frage 4: „Sieben Jahre in einem Haus — warum kommen Sie nach der Elternzeit zu uns und nicht zurück?“</b></p>
+<p><b>Was sie wirklich wissen will:</b> Ob du im Streit gegangen bist und ob du bleibst.</p>
+<p><b>Überzeugt:</b> Was du dort aufgebaut hast, und dass du genau das suchst, was ausgeschrieben ist — unbefristet.</p>
+<p><b>Schreckt ab:</b> „Mit dem Chef war es am Ende schwierig.“</p></div>
+<div class="q"><p><b>Frage 5: „Verärgerter Kunde am Empfang, Telefon klingelt, die Geschäftsführung wartet auf vertrauliche Zahlen. Was machen Sie in welcher Reihenfolge?“</b></p>
+<p><b>Was sie wirklich wissen will:</b> Ob du Prioritäten setzt und ob Diskretion ein Reflex ist.</p>
+<p><b>Überzeugt:</b> Kunde zuerst, vertrauliche Unterlage nicht auf den Tresen, Telefon annehmen und zurückrufen.</p>
+<p><b>Schreckt ab:</b> „Ich mache alles gleichzeitig, ich bin ja belastbar.“</p></div>
+</details>
+<div class="note">Alles, was du im Gespräch sagst, muss stimmen. Die KI gibt dir die Fragen — die Antworten kommen aus deinem Leben.</div>
 
 <h2>Woran der Personaler in 7 Sekunden hängen bleibt</h2>
 <ul class="rules">
